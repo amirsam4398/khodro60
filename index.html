@@ -3,32 +3,155 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>خودرو۶۰ - زیرمجموعه استارتاپ رویال فام</title>
+  <title>خودرو۶۰ - استارتاپ هوش مصنوعی رویال فام</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans">
-  <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 p-4">
-    <div class="max-w-4xl mx-auto flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-gradient-to-tr from-red-600 to-amber-500 rounded-xl flex items-center justify-center font-black text-white">۶۰</div>
+<body class="bg-slate-950 text-slate-100 font-sans selection:bg-red-600 selection:text-white">
+  <!-- هدر سایت -->
+  <header class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+      <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('sell')">
+        <div class="w-12 h-12 bg-gradient-to-tr from-red-600 to-amber-500 rounded-2xl flex items-center justify-center shadow-lg shadow-red-600/30">
+          <span class="text-xl font-black text-white">۶۰</span>
+        </div>
         <div>
-          <h1 class="font-black text-sm">خودرو۶۰</h1>
-          <p class="text-[10px] text-slate-400">استارتاپ رویال فام AI</p>
+          <div class="flex items-center gap-2">
+            <h1 class="text-lg font-black tracking-tight text-white">خودرو۶۰</h1>
+            <span class="text-[10px] px-2 py-0.5 bg-red-500/20 text-red-400 border border-red-500/30 rounded-full font-bold">رویال فام AI</span>
+          </div>
+          <p class="text-[11px] text-slate-400">سامانه هوشمند معامله سریع خودرو</p>
         </div>
       </div>
-      <a href="tel:09366681963" class="bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold text-slate-200">۰۹۳۶۶۶۸۱۹۶۳</a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold">
+        <button onclick="switchTab('sell')" id="btn-sell" class="text-red-500 border-b-2 border-red-500 pb-1">فروش فوری خودرو</button>
+        <button onclick="switchTab('buy')" id="btn-buy" class="text-slate-300 hover:text-white">خرید خودرو</button>
+        <button onclick="switchTab('pricing')" id="btn-pricing" class="text-slate-300 hover:text-white">قیمت‌گذاری هوشمند</button>
+      </nav>
+      <a href="tel:09366681963" class="flex items-center gap-2 bg-slate-800 border border-slate-700 px-4 py-2.5 rounded-xl text-xs font-bold text-slate-200">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>۰۹۳۶۶۶۸۱۹۶۳
+      </a>
     </div>
   </header>
-  <main class="max-w-3xl mx-auto px-4 py-12 text-center space-y-6">
-    <span class="bg-red-500/10 text-red-400 border border-red-500/30 text-xs px-3 py-1 rounded-full font-bold">معامله فوری در ۶۰ دقیقه</span>
-    <h2 class="text-3xl md:text-5xl font-black">فروش هوشمند خودرو بدون واسطه</h2>
-    <p class="text-slate-400 text-sm">کارشناسی تخصصی و تسویه حساب آنی مشابه خودرو۴۵، تحت نظارت استارتاپ رویال فام.</p>
-    <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl text-right space-y-4 max-w-lg mx-auto">
-      <h3 class="font-bold text-center text-sm">ثبت درخواست فوری</h3>
-      <input type="text" placeholder="برند و مدل خودرو (مثال: دنا پلاس)" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-red-500">
-      <input type="text" value="09366681963" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-red-500">
-      <button onclick="alert('درخواست شما با موفقیت در سیستم خودرو۶۰ ثبت شد!')" class="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-3 rounded-xl text-xs shadow-lg shadow-red-600/30">ثبت و دریافت کارشناسی رایگان</button>
+
+  <!-- محتوای اصلی -->
+  <main class="max-w-7xl mx-auto px-4 py-10">
+    <!-- بخش فروش فوری -->
+    <div id="view-sell" class="space-y-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7 space-y-6">
+          <span class="inline-block bg-red-600/10 text-red-400 border border-red-500/30 text-xs px-3.5 py-1.5 rounded-full font-bold">معامله هوشمند خودرو مشابه خودرو۴۵</span>
+          <h2 class="text-4xl md:text-6xl font-black leading-tight">فروش مطمئن خودرو در <span class="text-red-500">کمتر از ۶۰ دقیقه</span></h2>
+          <p class="text-slate-300 text-base leading-relaxed">بدون نیاز به درج آگهی و دلال‌بازی. کارشناسی ۱۴۵ نقطه‌ای در محل، قیمت‌گذاری هوش مصنوعی رویال فام و تسویه حساب آنی.</p>
+          <div class="grid grid-cols-3 gap-4 pt-4">
+            <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl text-center">
+              <span class="block text-xl font-black text-red-500">۱۴۵ نقطه</span>
+              <span class="text-xs text-slate-400">کارشناسی رایگان</span>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl text-center">
+              <span class="block text-xl font-black text-amber-500">مزایده آنلاین</span>
+              <span class="text-xs text-slate-400">بالاترین پیشنهاد</span>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl text-center">
+              <span class="block text-xl font-black text-emerald-500">آنی</span>
+              <span class="text-xs text-slate-400">تسویه بانکی</span>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-5 bg-slate-900 border border-slate-800 p-8 rounded-3xl shadow-2xl space-y-6">
+          <h3 class="text-xl font-black text-white">ثبت درخواست فروش فوری</h3>
+          <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">برند خودرو</label>
+              <input type="text" required placeholder="مثال: تویوتا، دنا پلاس..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-red-500">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">شماره تماس</label>
+              <input type="text" required value="09366681963" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-red-500">
+            </div>
+            <button type="submit" class="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-4 rounded-xl text-sm shadow-lg shadow-red-600/30">ثبت درخواست کارشناسی رایگان</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- بخش خرید خودرو با تصاویر واقعی -->
+    <div id="view-buy" class="hidden space-y-8">
+      <h2 class="text-2xl font-black">خودروهای کارشناسی‌شده خودرو۶۰ (تایید شده رویال فام)</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden">
+          <div class="h-48 bg-slate-950">
+            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6 space-y-3">
+            <span class="text-xs text-red-500 font-bold">۱۴۰۲ | ۱۵,۰۰۰ کیلومتر</span>
+            <h3 class="text-lg font-black">دنا پلاس توربو اتوماتیک</h3>
+            <p class="text-xs text-slate-400">بدون رنگ و خط و خش - کارشناسی ۱۴۵ نقطه‌ای</p>
+            <div class="pt-4 border-t border-slate-800 flex justify-between items-center">
+              <span class="font-black text-emerald-400">۸۲۵,۰۰۰,۰۰۰ تومان</span>
+              <button onclick="alert('رزرو ثبت شد!')" class="bg-red-600 px-4 py-2 rounded-xl text-xs font-bold">رزرو خودرو</button>
+            </div>
+          </div>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden">
+          <div class="h-48 bg-slate-950">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6 space-y-3">
+            <span class="text-xs text-red-500 font-bold">۱۴۰۳ | صفر کیلومتر</span>
+            <h3 class="text-lg font-black">شاهین G دنده‌ای</h3>
+            <p class="text-xs text-slate-400">تحویل روز - سند آزاد آماده انتقال</p>
+            <div class="pt-4 border-t border-slate-800 flex justify-between items-center">
+              <span class="font-black text-emerald-400">۷۱۰,۰۰۰,۰۰۰ تومان</span>
+              <button onclick="alert('رزرو ثبت شد!')" class="bg-red-600 px-4 py-2 rounded-xl text-xs font-bold">رزرو خودرو</button>
+            </div>
+          </div>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden">
+          <div class="h-48 bg-slate-950">
+            <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6 space-y-3">
+            <span class="text-xs text-red-500 font-bold">۱۴۰۲ | ۸,۰۰۰ کیلومتر</span>
+            <h3 class="text-lg font-black">تیگو ۷ پرو پرمیوم</h3>
+            <p class="text-xs text-slate-400">فول آپشن - گارانتی فعال شرکتی</p>
+            <div class="pt-4 border-t border-slate-800 flex justify-between items-center">
+              <span class="font-black text-emerald-400">۱,۵۸۰,۰۰۰,۰۰۰ تومان</span>
+              <button onclick="alert('رزرو ثبت شد!')" class="bg-red-600 px-4 py-2 rounded-xl text-xs font-bold">رزرو خودرو</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- بخش قیمت‌گذاری -->
+    <div id="view-pricing" class="hidden space-y-6 max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-black">استعلام هوشمند قیمت بازار</h2>
+      <p class="text-xs text-slate-400">محاسبه قیمت روز خودرو بر اساس هوش مصنوعی رویال فام</p>
+      <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl space-y-4">
+        <input type="text" placeholder="نام خودرو (مثال: تارا اتوماتیک)" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-200">
+        <button onclick="alert('میانگین قیمت بازار: ۸۸۵,۰۰۰,۰۰۰ تومان')" class="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-3 rounded-xl text-sm">محاسبه ارزش روز</button>
+      </div>
     </div>
   </main>
+
+  <script>
+    function switchTab(tab) {
+      document.getElementById('view-sell').classList.add('hidden');
+      document.getElementById('view-buy').classList.add('hidden');
+      document.getElementById('view-pricing').classList.add('hidden');
+      
+      document.getElementById('btn-sell').className = "text-slate-300 hover:text-white";
+      document.getElementById('btn-buy').className = "text-slate-300 hover:text-white";
+      document.getElementById('btn-pricing').className = "text-slate-300 hover:text-white";
+
+      document.getElementById('view-' + tab).classList.remove('hidden');
+      event.target.className = "text-red-500 border-b-2 border-red-500 pb-1 font-bold";
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      alert('درخواست کارشناسی و فروش شما در خودرو۶۰ ثبت شد. به زودی تماس خواهیم گرفت.');
+    }
+  </script>
 </body>
 </html>
